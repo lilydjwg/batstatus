@@ -34,7 +34,7 @@ fn process<W: Write>(mut p: PathBuf, f: &mut W) -> Result<()> {
   write!(f, "{}: ", name)?;
 
   let status = status.trim();
-  f.write(status.as_bytes())?;
+  f.write_all(status.as_bytes())?;
 
   p.set_file_name("capacity");
   let percent = get_number_value(&p)
@@ -64,7 +64,7 @@ fn process<W: Write>(mut p: PathBuf, f: &mut W) -> Result<()> {
     _ => { }
   }
 
-  f.write(b"\n")?;
+  f.write_all(b"\n")?;
 
   Ok(())
 }
